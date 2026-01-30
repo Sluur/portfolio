@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rodrigo Haro - Full-Stack Developer & ML Engineer</title>
+    <meta name="description" content="Full-Stack Developer specializing in Django, React, and Machine Learning. Building production-ready applications with modern technologies.">
+    
+    <style>
+        /* ============================================
+           VARIABLES & RESET
+           ============================================ */
+        :root {
+            --color-bg: #0a0a0a;
+            --color-text: #e0e0e0;
+            --color-text-dim: #999;
+            --color-accent: #00d9ff;
+            --color-accent-dim: #0088aa;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --font-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+            --spacing-unit: 1rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* ============================================
+           TYPOGRAPHY
+           ============================================ */
+        h1, h2, h3 {
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.125rem;
+            color: var(--color-text-dim);
+            max-width: 65ch;
+            margin-bottom: 1.5rem;
+        }
+
+        a {
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--color-text);
+        }
+
+        strong {
+            color: var(--color-text);
+            font-weight: 600;
+        }
+
+        /* ============================================
+           LAYOUT
+           ============================================ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 0;
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            z-index: 100;
+            background: linear-gradient(to bottom, var(--color-bg) 0%, transparent 100%);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            color: var(--color-text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--color-accent);
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1.25rem;
+            color: var(--color-text);
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            padding-top: 8rem;
+        }
+
+        .hero h1 {
+            line-height: 1.1;
+        }
+
+        .hero h1 .accent {
+            color: var(--color-accent);
+            display: block;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--color-text);
+            margin-bottom: 2rem;
+        }
+
+        .hero .cta {
+            display: inline-flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border: 2px solid var(--color-accent);
+            color: var(--color-accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--color-accent);
+            color: var(--color-bg);
+        }
+
+        .btn-secondary {
+            border-color: var(--color-text-dim);
+            color: var(--color-text-dim);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-text);
+            background: transparent;
+            color: var(--color-text);
+        }
+
+        /* ============================================
+           PROJECTS SECTION
+           ============================================ */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            border: 1px solid #222;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            background: #111;
+        }
+
+        .project-card:hover {
+            border-color: var(--color-accent-dim);
+            transform: translateY(-5px);
+        }
+
+        .project-card h3 {
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .project-card p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--color-text-dim);
+            background: #1a1a1a;
+            padding: 0.25rem 0.75rem;
+            border-radius: 3px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-links a {
+            font-size: 0.9rem;
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        /* ============================================
+           SKILLS SECTION
+           ============================================ */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category h4 {
+            color: var(--color-accent);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+            color: var(--color-text-dim);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ============================================
+           ABOUT SECTION
+           ============================================ */
+        .about-content {
+            max-width: 800px;
+        }
+
+        .about-content p {
+            font-size: 1.25rem;
+            line-height: 1.8;
+        }
+
+        /* ============================================
+           CONTACT SECTION
+           ============================================ */
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .contact-link {
+            font-size: 1.5rem;
+            color: var(--color-text);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-link:hover {
+            color: var(--color-accent);
+        }
+
+        .contact-link span {
+            font-size: 0.9rem;
+            color: var(--color-text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--color-text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            section {
+                min-height: auto;
+            }
+
+            .hero {
+                padding-top: 6rem;
+            }
+
+            .hero .cta {
+                flex-direction: column;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--color-text-dim);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">RH</div>
+            <ul>
+                <li><a href="#projects">Work</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container fade-in">
+            <h1>
+                Hi, I'm <span class="accent">Rodrigo Haro</span>
+            </h1>
+            <p class="subtitle">Full-Stack Developer & ML Engineer</p>
+            <p>I build production-ready web applications with <strong>Django</strong>, <strong>React</strong>, and <strong>Machine Learning</strong>. From backend APIs to ML model deployment, I love creating solutions that work in the real world.</p>
+            <div class="cta">
+                <a href="#projects" class="btn">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">Scroll</div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2>Selected <strong>Projects</strong></h2>
+            
+            <div class="projects-grid">
+                <!-- BeetleApp -->
+                <div class="project-card fade-in">
+                    <span class="project-tag">Machine Learning</span>
+                    <h3>BeetleApp</h3>
+                    <p>AI-powered beetle species identification platform. Users upload images and get instant classification using a fine-tuned PyTorch model deployed in production.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">PyTorch</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="https://github.com/Sluur/beetleapp" target="_blank">View Code →</a>
+                        <a href="https://beetleapp-7v7t.vercel.app/" target="_blank">Live Demo →</a>
+                    </div>
+                </div>
+
+                <!-- HelpDesk -->
+                <div class="project-card fade-in">
+                    <span class="project-tag">Full-Stack</span>
+                    <h3>HelpDesk System</h3>
+                    <p>Complete ticket management system with role-based permissions, workflow states, and real-time updates. Built to handle enterprise-level support operations.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">Django REST</span>
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">TypeScript</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Docker</span>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="https://github.com/Sluur/helpdesk" target="_blank">View Code →</a>
+                        <a href="https://helpdesk-rho-lilac.vercel.app/" target="_blank">Live Demo →</a>
+                    </div>
+                </div>
+
+                <!-- Future Project Placeholder -->
+                <div class="project-card fade-in" style="opacity: 0.5; border-style: dashed;">
+                    <span class="project-tag">GenAI · Coming Soon</span>
+                    <h3>AI Document Assistant</h3>
+                    <p>RAG-powered document analysis system using LangChain and OpenAI. Enables semantic search and Q&A over uploaded documents.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">LangChain</span>
+                        <span class="tech-tag">OpenAI</span>
+                        <span class="tech-tag">ChromaDB</span>
+                    </div>
+
+                    <div class="project-links">
+                        <a href="#" style="color: var(--color-text-dim);">In Development</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2>Technical <strong>Skills</strong></h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Backend</h4>
+                    <ul>
+                        <li>Python (Django, FastAPI, Flask)</li>
+                        <li>Django REST Framework</li>
+                        <li>PostgreSQL, SQL</li>
+                        <li>RESTful APIs</li>
+                        <li>Authentication & Authorization</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Frontend</h4>
+                    <ul>
+                        <li>React, TypeScript</li>
+                        <li>JavaScript (ES6+)</li>
+                        <li>HTML5, CSS3</li>
+                        <li>Responsive Design</li>
+                        <li>Modern UI/UX</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Machine Learning</h4>
+                    <ul>
+                        <li>PyTorch (Model Training & Deployment)</li>
+                        <li>Transfer Learning</li>
+                        <li>Computer Vision</li>
+                        <li>Model Serving in Production</li>
+                        <li>Fast.ai Framework</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>DevOps & Tools</h4>
+                    <ul>
+                        <li>Docker, Docker Compose</li>
+                        <li>Git, GitHub</li>
+                        <li>Railway, Render, Vercel</li>
+                        <li>CI/CD Basics</li>
+                        <li>Linux</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Currently Learning</h4>
+                    <ul>
+                        <li>AWS (AI Services)</li>
+                        <li>LangChain & RAG</li>
+                        <li>OpenAI API</li>
+                        <li>Vector Databases</li>
+                        <li>GenAI Applications</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>About <strong>Me</strong></h2>
+                <p>I'm a full-stack developer from Argentina with a passion for building <strong>real-world applications</strong> that solve actual problems.</p>
+                
+                <p>My journey started with web development, but I quickly discovered a fascination with <strong>machine learning</strong> and AI. Now I specialize in the intersection of both: building ML-powered applications that are production-ready and user-friendly.</p>
+
+                <p>I believe in <strong>shipping working software</strong>. All my projects are deployed and accessible, not just sitting in localhost. I'm constantly learning new technologies and improving my craft.</p>
+
+                <p>When I'm not coding, you'll find me exploring new frameworks, contributing to open source, or learning about the latest developments in AI and GenAI.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Let's <strong>Connect</strong></h2>
+            <p>I'm currently <strong>open to opportunities</strong> in Full-Stack Development, ML Engineering, or anything in between. Whether you have a project in mind or just want to say hi, I'd love to hear from you.</p>
+            
+            <div class="contact-links">
+                <a href="https://github.com/Sluur" target="_blank" class="contact-link">
+                    <span>GitHub</span>
+                    github.com/Sluur
+                </a>
+                <a href="https://linkedin.com/in/your-profile" target="_blank" class="contact-link">
+                    <span>LinkedIn</span>
+                    linkedin.com/in/rodrigo-haro
+                </a>
+                <a href="mailto:rodrigo.l.haro@gmail.com" class="contact-link">
+                    <span>Email</span>
+                    rodrigo.l.haro@gmail.com
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2026 Rodrigo Haro. Built with HTML, CSS, and attention to detail.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll animation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, section').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Hide scroll indicator after scroll
+        window.addEventListener('scroll', () => {
+            const scrollIndicator = document.querySelector('.scroll-indicator');
+            if (window.scrollY > 100 && scrollIndicator) {
+                scrollIndicator.style.opacity = '0';
+            }
+        });
+    </script>
+</body>
+</html>
